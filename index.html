@@ -22,12 +22,11 @@
         .hidden-page { display: none; }
         .gallery-image-hover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: all 0.6s ease-in-out; }
 
-        /* --- 懸浮 AI 助手同步浮動樣式 --- */
+        /* --- 懸浮 AI 助手 --- */
         #ai-widget-container { position: fixed; top: 35%; right: 1rem; z-index: 99; display: flex; flex-direction: column; align-items: center; touch-action: none; animation: floating-widget 3s ease-in-out infinite; }
         @keyframes floating-widget { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
         .ai-fab { cursor: grab; }
         .ai-fab:active { cursor: grabbing; }
-
         .ai-tooltip { background: white; color: #1a1a1a; padding: 0.5rem 0.75rem; border-radius: 1.5rem; font-size: 0.7rem; line-height: 1.2; font-weight: 800; margin-bottom: 0.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; text-align: center; text-transform: uppercase; border: 1px solid rgba(0,0,0,0.05); width: 95px; }
         .ai-tooltip::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid white; }
 
@@ -36,42 +35,62 @@
         .chat-scroll::-webkit-scrollbar { width: 4px; }
         .chat-scroll::-webkit-scrollbar-thumb { background: #e63946; border-radius: 10px; }
 
-        #mobile-menu { transition: all 0.3s ease-in-out; max-height: 0; overflow: hidden; }
-        #mobile-menu.open { max-height: 600px; }
-
-        /* 語言切換 */
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-content { display: none; position: absolute; background: rgba(0,0,0,0.95); min-width: 120px; border-radius: 1rem; overflow: hidden; right: 0; top: 100%; margin-top: 0.5rem; border: 1px solid rgba(255,255,255,0.1); }
+        /* --- 語言切換選單修正 (隱形橋樑防止消失) --- */
+        .lang-dropdown { position: relative; }
+        .lang-trigger { cursor: pointer; padding: 6px 12px; border-radius: 9999px; }
+        .lang-content { 
+            display: none; 
+            position: absolute; 
+            background: rgba(10, 10, 10, 0.98); 
+            min-width: 150px; 
+            border-radius: 1rem; 
+            right: 0; 
+            top: 100%; 
+            margin-top: 2px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            z-index: 1001;
+            padding: 5px 0;
+        }
+        .lang-content::before { content: ""; position: absolute; top: -15px; left: 0; width: 100%; height: 15px; background: transparent; }
         .lang-dropdown:hover .lang-content { display: block; }
-        .lang-item { padding: 0.75rem 1rem; cursor: pointer; transition: background 0.3s; font-size: 0.75rem; font-weight: 600; text-align: left; }
-        .lang-item:hover { background: #e63946; }
+        .lang-item { padding: 0.75rem 1.25rem; cursor: pointer; transition: all 0.2s; font-size: 0.8rem; font-weight: 700; color: white; display: flex; align-items: center; justify-content: space-between; }
+        .lang-item:hover { background: #e63946; padding-left: 1.5rem; }
+
+        #mobile-menu { transition: all 0.3s ease; max-height: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 600px; }
+        .bg-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 text-left">
 
     <!-- 導航欄 -->
-    <nav class="fixed w-full z-50 bg-black/80 text-white backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="fixed w-full z-[150] bg-black/80 text-white backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
                 <div class="flex items-center space-x-2 sm:space-x-4 shrink-0" onclick="showPage('home')" style="cursor:pointer">
-                    <div class="logo-container logo-bg shadow-lg scale-75 sm:scale-100">
-                        <img src="2.png" alt="Logo" class="logo-img">
-                    </div>
-                    <span class="text-lg sm:text-2xl font-black tracking-tighter uppercase italic">Phoenix Auto<span class="text-red-600">.852</span></span>
+                    <div class="logo-container logo-bg shadow-lg scale-75 sm:scale-100"><img src="2.png" alt="Logo" class="logo-img"></div>
+                    <span class="text-base sm:text-2xl font-black tracking-tighter uppercase italic leading-none">Phoenix Auto<span class="text-red-600">.852</span></span>
                 </div>
                 
-                <div class="flex items-center space-x-2 sm:space-x-4">
-                    <div class="hidden lg:flex space-x-8 font-semibold uppercase text-sm tracking-widest mr-4">
+                <div class="flex items-center space-x-1 sm:space-x-4">
+                    <!-- 電腦版連結 (加入動態切換邏輯) -->
+                    <div class="hidden lg:flex space-x-6 font-semibold uppercase text-xs tracking-widest mr-2">
                         <a href="javascript:void(0)" onclick="showPage('home')" class="hover:text-red-500 transition" data-t="nav_home">Home</a>
-                        <a href="javascript:void(0)" onclick="showPage('gallery')" class="hover:text-red-500 transition" data-t="nav_gallery">Gallery</a>
-                        <a href="#services" class="hover:text-red-500 transition home-only" data-t="nav_services">Services</a>
+                        <a href="javascript:void(0)" id="nav-gallery" onclick="showPage('gallery')" class="hover:text-red-500 transition" data-t="nav_gallery">Gallery</a>
+                        <a href="javascript:void(0)" onclick="jumpTo('services')" class="hover:text-red-500 transition" data-t="nav_services">Services</a>
+                        <a href="javascript:void(0)" onclick="jumpTo('about')" class="hover:text-red-500 transition" data-t="nav_story">Our Story</a>
                     </div>
 
                     <!-- 語言切換 -->
                     <div class="lang-dropdown">
-                        <button class="text-white hover:text-red-500 transition flex items-center space-x-2 bg-white/10 px-3 py-1 rounded-full text-xs font-bold">
-                            <i class="fas fa-globe"></i> <span id="current-lang-text">EN</span>
-                        </button>
+                        <div class="lang-trigger bg-white/10 hover:bg-white/20 border border-white/10 flex items-center space-x-2 px-3 py-1.5 transition">
+                            <i class="fas fa-globe text-red-500 text-sm"></i>
+                            <span id="current-lang-text" class="text-[10px] font-black uppercase">EN</span>
+                            <i class="fas fa-chevron-down text-[8px] opacity-40"></i>
+                        </div>
                         <div class="lang-content">
                             <div class="lang-item" onclick="changeLang('en')">English</div>
                             <div class="lang-item" onclick="changeLang('zh')">繁體中文</div>
@@ -79,46 +98,52 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center space-x-2 sm:space-x-4">
-                        <a href="https://wa.me/14374496026" target="_blank" class="text-green-500 hover:text-green-400 text-lg sm:text-2xl transition"><i class="fab fa-whatsapp"></i></a>
+                    <!-- 頂部連繫 (Instagram, WhatsApp, SMS, Email) -->
+                    <div class="flex items-center space-x-3 sm:space-x-5 ml-1">
+                        <a href="https://www.instagram.com/phoenix.852/" target="_blank" rel="noopener" class="text-white hover:text-red-500 text-lg sm:text-2xl transition"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/14374496026" target="_blank" rel="noopener" class="text-green-500 hover:text-green-400 text-lg sm:text-2xl transition"><i class="fab fa-whatsapp"></i></a>
+                        <a href="sms:+14374496026" class="text-red-500 hover:text-red-400 text-lg sm:text-2xl transition"><i class="fas fa-comment-alt"></i></a>
                         <a href="mailto:phoenixauto852@gmail.com" class="text-blue-400 hover:text-blue-300 text-lg sm:text-2xl transition"><i class="fas fa-envelope"></i></a>
                     </div>
 
-                    <button onclick="toggleMobileMenu()" class="lg:hidden text-white text-2xl ml-2"><i id="menu-icon" class="fas fa-bars"></i></button>
-                    <a href="#contact" class="hidden xl:block bg-red-600 px-6 py-2 rounded-full hover:bg-red-700 transition shadow-lg font-bold uppercase text-xs text-white" data-t="book_now">Book Now</a>
+                    <button onclick="toggleMobileMenu()" class="lg:hidden text-white text-2xl ml-1"><i id="menu-icon" class="fas fa-bars"></i></button>
+                    <a href="#contact" onclick="jumpTo('contact')" class="hidden md:block bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition shadow-lg font-black uppercase text-[10px] text-white" data-t="book_now">Book Now</a>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="lg:hidden bg-black/95 px-6">
-            <div class="flex flex-col space-y-4 py-6 font-bold uppercase text-sm text-white">
+
+        <div id="mobile-menu" class="lg:hidden bg-black/95 border-t border-white/10 px-6 text-white text-left">
+            <div class="flex flex-col space-y-4 py-6 font-bold uppercase text-sm tracking-widest">
                 <a href="javascript:void(0)" onclick="handleMobileNav('home')" data-t="nav_home">Home</a>
-                <a href="javascript:void(0)" onclick="handleMobileNav('gallery')" data-t="nav_gallery">Gallery</a>
-                <a href="#services" onclick="toggleMobileMenu()" data-t="nav_services">Services</a>
-                <a href="#about" onclick="toggleMobileMenu()" data-t="nav_story">Our Story</a>
-                <a href="#contact" onclick="toggleMobileMenu()" class="text-red-500" data-t="book_now">Book Service</a>
+                <a href="javascript:void(0)" onclick="handleMobileNav('gallery')" id="mob-gallery" data-t="nav_gallery">Gallery</a>
+                <a href="javascript:void(0)" onclick="handleJumpNav('services')" data-t="nav_services">Services</a>
+                <a href="javascript:void(0)" onclick="handleJumpNav('about')" data-t="nav_story">Our Story</a>
+                <a href="javascript:void(0)" onclick="handleJumpNav('contact')" class="text-red-500 font-black" data-t="book_now">Book Service →</a>
             </div>
         </div>
     </nav>
 
     <main id="page-container">
+        <!-- HOME PAGE -->
         <div id="home-page">
-            <!-- Hero -->
-            <section class="relative min-h-screen flex items-center justify-center text-center text-white px-4 pt-24 pb-12">
+            <section id="home" class="relative min-h-screen flex items-center justify-center text-center text-white px-4 overflow-hidden pt-24 pb-12">
                 <div class="video-docker"><video autoplay muted loop playsinline><source src="video.mp4" type="video/mp4"></video><div class="video-overlay"></div></div>
                 <div class="max-w-4xl hero-content">
+                    <div class="mb-8 inline-block p-2 bg-white/10 backdrop-blur-2xl rounded-full border border-white/20 shadow-2xl">
+                        <div class="w-24 h-24 sm:w-40 sm:h-40 logo-bg rounded-full flex items-center justify-center border-4 border-white overflow-hidden"><img src="2.png" alt="Logo" class="logo-img"></div>
+                    </div>
                     <h2 class="text-orange-400 font-bold tracking-[0.4em] mb-4 uppercase text-[10px] sm:text-sm" data-t="hero_sub">Premium Mobile Mechanical Service</h2>
                     <h1 class="text-4xl sm:text-6xl md:text-8xl font-black mb-6 uppercase italic leading-tight"><span data-t="hero_title_1">Revive Your</span> <span class="phoenix-accent" data-t="hero_title_2">Drive</span></h1>
-                    <p class="text-lg sm:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto font-light" data-t="hero_desc">No garage? No problem. We bring dealership-quality expertise to your driveway.</p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="https://wa.me/14374496026" target="_blank" class="bg-green-600 px-12 py-4 rounded-full text-xl font-black transition shadow-xl" data-t="whatsapp">WhatsApp Us</a>
-                        <a href="javascript:void(0)" onclick="showPage('gallery')" class="bg-white/10 border border-white/30 px-12 py-4 rounded-full text-xl font-bold transition" data-t="view_gallery">View Gallery</a>
+                    <p class="text-lg sm:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto font-light" data-t="hero_desc">No garage? No problem. We bring dealership-quality expertise to your driveway across the GTA.</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+                        <a href="https://wa.me/14374496026" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-12 py-4 rounded-full text-xl font-black transition-all shadow-xl" data-t="whatsapp">WhatsApp Us</a>
+                        <a href="javascript:void(0)" onclick="showPage('gallery')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-12 py-4 rounded-full text-xl font-bold transition" data-t="view_gallery">View Gallery</a>
                     </div>
                 </div>
             </section>
 
-            <!-- Services -->
-            <section id="services" class="py-24 sm:py-32 max-w-7xl mx-auto px-4">
-                <h2 class="text-4xl sm:text-5xl font-black uppercase mb-12 text-left"><span data-t="s_title_1">Expert Mobile</span> <span class="text-red-600" data-t="s_title_2">Care</span></h2>
+            <section id="services" class="py-24 sm:py-32 max-w-7xl mx-auto px-4 text-left">
+                <h2 class="text-4xl sm:text-5xl font-black uppercase mb-12"><span data-t="service_title_1">Expert Mobile</span> <span class="text-red-600" data-t="service_title_2">Care</span></h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-red-600">
                         <i class="fas fa-oil-can text-3xl text-red-600 mb-6"></i>
@@ -128,12 +153,12 @@
                     <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-orange-500">
                         <i class="fas fa-compact-disc text-3xl text-orange-500 mb-6"></i>
                         <h3 class="text-2xl font-black mb-2 uppercase italic" data-t="s2_h">Brake Systems</h3>
-                        <p class="text-gray-500 leading-relaxed" data-t="s2_p">Pads, rotors, and sensor replacements. Complete professional safety inspection included.</p>
+                        <p class="text-gray-500 leading-relaxed" data-t="s2_p">Pads, rotors, and sensor replacements. Complete professional safety inspection.</p>
                     </div>
                     <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-red-600">
                         <i class="fas fa-snowflake text-3xl text-red-600 mb-6"></i>
                         <h3 class="text-2xl font-black mb-2 uppercase italic" data-t="s3_h">Tire Swap</h3>
-                        <p class="text-gray-500 leading-relaxed" data-t="s3_p">Mobile tire swap and pressure calibration. Get ready for Canada's toughest weather.</p>
+                        <p class="text-gray-500 leading-relaxed" data-t="s3_p">Mobile tire swap and pressure calibration. Ready for all seasons in Canada.</p>
                     </div>
                     <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-orange-500">
                         <i class="fas fa-microchip text-3xl text-orange-500 mb-6"></i>
@@ -147,132 +172,142 @@
                     </div>
                     <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-orange-500">
                         <i class="fas fa-search-dollar text-3xl text-orange-500 mb-6"></i>
-                        <h3 class="text-2xl font-black mb-2 uppercase italic" data-t="s6_h">Inspections</h3>
-                        <p class="text-gray-500 leading-relaxed" data-t="s6_p">Comprehensive pre-purchase inspections (PPI) and overall vehicle health checks.</p>
+                        <h3 class="text-2xl font-black mb-2 uppercase italic" data-t="s6_h">Safety Inspections</h3>
+                        <p class="text-gray-500 leading-relaxed" data-t="s6_p">Comprehensive pre-safety inspections and overall vehicle health checks.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Brand Story -->
-            <section id="about" class="py-24 sm:py-32 bg-black text-white relative overflow-hidden">
+            <section id="about" class="py-24 sm:py-32 bg-black text-white relative overflow-hidden text-left">
                 <div class="max-w-7xl mx-auto px-4">
                     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                        <div class="lg:w-3/5 text-left">
+                        <div class="lg:w-3/5">
                             <h2 class="text-red-500 font-black mb-4 uppercase tracking-[0.3em]" data-t="story_sub">Our Spirit</h2>
                             <h3 class="text-4xl sm:text-5xl md:text-7xl font-black mb-10 uppercase leading-tight italic"><span data-t="story_h1">From Crisis to</span><br><span class="text-transparent bg-clip-text logo-bg" data-t="story_h2">Purpose</span></h3>
                             <div class="space-y-8 text-gray-400 text-lg sm:text-xl font-light leading-relaxed">
                                 <p data-t="story_p1">Starting a new chapter in Canada was anything but easy. Between the daily grind and the weight of uncertainty, there was a moment where the pressure became overwhelming.</p>
                                 <p class="text-white font-bold italic text-2xl sm:text-3xl border-l-8 border-red-600 pl-6 py-4 bg-white/5" data-t="story_quote">"I realized I wanted to help people who are facing the same struggles I once did."</p>
-                                <p data-t="story_p2">With the guidance of a master mechanic who selflessly shared his knowledge, Phoenix Auto.852 was born.</p>
+                                <p data-t="story_p2">With the guidance of a master mechanic who selflessly shared his knowledge, Phoenix Auto.852 was born. We're here to provide the support you can trust.</p>
                             </div>
                         </div>
                         <div class="lg:w-2/5 text-center">
                             <div class="w-48 h-48 sm:w-64 sm:h-64 logo-bg rounded-full flex items-center justify-center border-8 border-white shadow-2xl mx-auto overflow-hidden"><img src="2.png" alt="Spirit" class="logo-img"></div>
+                            <p class="text-red-500 font-black tracking-widest text-lg uppercase mt-8" data-t="hk_heart">Hong Kong Heart</p>
+                            <p class="text-gray-500 font-bold uppercase text-xs tracking-widest mt-2" data-t="toronto_service">Toronto Quality Service</p>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
 
+        <!-- GALLERY PAGE -->
         <div id="gallery-page" class="hidden-page pt-32 pb-20 px-4 text-center">
             <div class="max-w-7xl mx-auto">
-                <h2 class="text-5xl font-black uppercase mb-12 italic tracking-tighter" data-t="work_h">Our Work</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
-                    <!-- JS 將自動載入 12 個項目 -->
-                </div>
+                <!-- WORKS 標題：紅色 text-red-600 -->
+                <h2 class="text-5xl font-black uppercase mb-12 italic tracking-tighter"><span data-t="work_h_1">Our</span> <span class="text-red-600" data-t="work_h_2">WORKS</span></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid"></div>
             </div>
         </div>
 
+        <!-- Contact Section：增加 Instagram 方格 -->
         <section id="contact" class="py-24 bg-white px-4 border-t text-center">
             <h2 class="text-4xl md:text-5xl font-black uppercase mb-12 italic"><span data-t="book_title_1">Book Your</span> <span class="text-red-600" data-t="book_title_2">Service</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto font-black uppercase">
-                <a href="https://wa.me/14374496026" target="_blank" class="p-8 bg-green-600 text-white rounded-3xl hover:bg-green-700 transition shadow-xl flex flex-col items-center"><i class="fab fa-whatsapp text-4xl mb-4"></i>WhatsApp</a>
-                <a href="sms:+14374496026" class="p-8 bg-red-600 text-white rounded-3xl hover:bg-red-700 transition shadow-xl flex flex-col items-center"><i class="fas fa-comment-alt text-4xl mb-4"></i>Send SMS</a>
-                <a href="mailto:phoenixauto852@gmail.com" class="p-8 bg-gray-900 text-white rounded-3xl hover:bg-black transition shadow-xl flex flex-col items-center"><i class="fas fa-envelope text-4xl mb-4"></i>Email Us</a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-black uppercase tracking-tight max-w-7xl mx-auto">
+                <a href="https://wa.me/14374496026" target="_blank" class="p-8 bg-green-600 text-white rounded-3xl hover:bg-green-700 transition shadow-xl flex flex-col items-center"><i class="fab fa-whatsapp text-4xl mb-4 block"></i>WhatsApp</a>
+                <a href="sms:+14374496026" class="p-8 bg-red-600 text-white rounded-3xl hover:bg-red-700 transition shadow-xl flex flex-col items-center"><i class="fas fa-comment-alt text-4xl mb-4 block"></i>SMS</a>
+                <!-- Instagram 選項 -->
+                <a href="https://www.instagram.com/phoenix.852/" target="_blank" class="p-8 bg-instagram text-white rounded-3xl hover:opacity-90 transition shadow-xl flex flex-col items-center"><i class="fab fa-instagram text-4xl mb-4 block"></i>Instagram</a>
+                <a href="mailto:phoenixauto852@gmail.com" class="p-8 bg-gray-900 text-white rounded-3xl hover:bg-black transition shadow-xl flex flex-col items-center"><i class="fas fa-envelope text-4xl mb-4 block"></i>Email</a>
             </div>
         </section>
     </main>
 
+    <!-- Floating AI Widget -->
     <div id="ai-widget-container">
         <div id="ai-cloud-bubble" class="ai-tooltip" data-t="ai_ask">Ask me<br>any questions</div>
         <div class="ai-fab"><button id="ai-btn" class="bg-black text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:bg-red-600 border-4 border-white active:scale-95"><i class="fas fa-robot text-2xl"></i></button></div>
     </div>
 
-    <div id="ai-window" class="ai-chat-window text-left">
-        <div class="p-6 bg-black text-white flex justify-between items-center shrink-0"><span class="font-black text-sm uppercase" data-t="ai_assistant">AI Assistant</span><button onclick="closeAiWindow()"><i class="fas fa-times"></i></button></div>
-        <div id="chat-content" class="flex-1 p-6 overflow-y-auto bg-gray-50 flex flex-col space-y-4 text-sm">
-            <div class="bg-white p-4 rounded-2xl border self-start max-w-[85%] shadow-sm" data-t="ai_intro">Hello! Describe your car symptoms and I'll analyze them for you.</div>
+    <!-- AI Chat Window -->
+    <div id="ai-window" class="ai-chat-window">
+        <div class="p-6 bg-black text-white flex justify-between items-center shrink-0">
+            <div class="flex items-center"><i class="fas fa-magic mr-3 text-red-500"></i><span class="font-black uppercase text-sm" data-t="ai_h">AI Assistant</span></div>
+            <button onclick="closeAiWindow()" class="text-white opacity-50 hover:opacity-100 transition"><i class="fas fa-times"></i></button>
         </div>
-        <div id="chat-loading" class="hidden px-6 py-2 text-red-600 text-[10px] font-black uppercase">Thinking...</div>
+        <div id="chat-content" class="flex-1 p-6 overflow-y-auto bg-gray-50 chat-scroll flex flex-col space-y-4 text-left text-sm font-medium">
+            <div class="bg-white p-4 rounded-2xl border self-start max-w-[85%] shadow-sm" data-t="ai_intro">Hello! I'm your AI mechanic advisor. Describe any issues your car is having!</div>
+        </div>
+        <div id="chat-loading" class="hidden px-6 py-2 text-red-600 text-[10px] font-black uppercase italic" data-t="ai_thinking">Thinking...</div>
         <div class="p-4 bg-white border-t shrink-0 flex space-x-2">
-            <input type="text" id="ai-input" class="flex-1 px-4 py-2 bg-gray-100 rounded-full outline-none text-sm font-medium">
-            <button onclick="diagnoseIssue()" class="bg-black text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-600 transition"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" id="ai-input" class="flex-1 px-4 py-3 bg-gray-100 rounded-full outline-none text-sm">
+            <button onclick="diagnoseIssue()" class="bg-black text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-600 transition shadow-lg"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
-    <footer class="bg-gray-50 py-12 border-t text-center text-gray-400 font-bold uppercase text-[10px]">
+    <footer class="bg-gray-50 py-16 border-t text-center text-gray-400 font-bold uppercase tracking-widest text-[10px]">
         © 2026 Phoenix Auto.852. Professional Mobile Mechanic Serving Toronto & GTA.
     </footer>
 
     <script>
+        // --- 語言與翻譯 ---
         let currentLang = 'en';
         const translations = {
             en: {
                 nav_home: "Home", nav_gallery: "Gallery", nav_services: "Services", nav_story: "Our Story", book_now: "Book Now",
                 hero_sub: "Premium Mobile Mechanical Service", hero_title_1: "Revive Your", hero_title_2: "Drive", hero_desc: "No garage? No problem. We bring dealership-quality expertise to your driveway across the GTA.",
                 whatsapp: "WhatsApp Us", view_gallery: "View Gallery",
-                s_title_1: "Expert Mobile", s_title_2: "Care",
+                service_title_1: "Expert Mobile", service_title_2: "Care",
                 s1_h: "Oil & Filters", s1_p: "Full synthetic fluid exchange and OEM-grade filter replacement.",
-                s2_h: "Brake Systems", s2_p: "Pads, rotors, and sensor replacements. Complete professional safety inspection.",
-                s3_h: "Tire Swap", s3_p: "Mobile tire swap and pressure calibration. Get ready for Canada's toughest weather.",
-                s4_h: "Diagnostics", s4_p: "Advanced computer scanning for engine check lights and complex electrical faults.",
-                s5_h: "Suspension", s5_p: "Repair and replacement of shocks, struts, control arms, and steering components.",
-                s6_h: "Safety Inspections", s6_p: "Comprehensive pre-safety inspections and overall vehicle health checks.",
+                s2_h: "Brake Systems", s2_p: "Pads, rotors, and sensor replacements. Complete professional inspection.",
+                s3_h: "Tire Swap", s3_p: "Mobile tire swap and pressure calibration. Ready for all weather.",
+                s4_h: "Diagnostics", s4_p: "Advanced computer scanning for engine check lights.",
+                s5_h: "Suspension", s5_p: "Repair and replacement of shocks, struts, and control arms.",
+                s6_h: "Inspections", s6_p: "Comprehensive PPI and overall vehicle health checks.",
                 story_sub: "Our Spirit", story_h1: "From Crisis to", story_h2: "Purpose",
-                story_p1: "Starting a new chapter in Canada was anything but easy. Uncertainty and pressure was overwhelming.",
+                story_p1: "Starting a new chapter in Canada was anything but easy...",
                 story_quote: `"I realized I wanted to help people who are facing the same struggles I once did."`,
-                story_p2: "With the guidance of a master mechanic, Phoenix Auto.852 was born.",
-                work_h: "Our Work", book_title_1: "Book Your", book_title_2: "Service",
-                ai_ask: "Ask me<br>any questions", ai_assistant: "AI Assistant", ai_intro: "Hello! Describe your car symptoms and I'll analyze them for you.",
-                ai_placeholder: "Describe symptoms...", ai_thinking: "Thinking...", ai_book: "Book Pro Inspection →"
+                story_p2: "With the guidance of a master mechanic who selflessly shared his knowledge, Phoenix Auto.852 was born.",
+                hk_heart: "Hong Kong Heart", toronto_service: "Toronto Quality Service",
+                work_h_1: "Our", work_h_2: "WORKS", book_title_1: "Book Your", book_title_2: "Service",
+                ai_ask: "Ask me<br>any questions", ai_h: "AI Assistant", ai_intro: "Hello! I'm your AI mechanic advisor. Describe any issues your car is having!", ai_thinking: "Thinking...", ai_placeholder: "Describe symptoms...", ai_book: "Book Pro Inspection →"
             },
             zh: {
                 nav_home: "首頁", nav_gallery: "作品集", nav_services: "服務項目", nav_story: "品牌故事", book_now: "立即預約",
                 hero_sub: "專業移動式汽車維修服務", hero_title_1: "重燃您的", hero_title_2: "駕駛激情", hero_desc: "沒車房？沒問題。我們將原廠級別的專業技術直接送到您在多倫多的車道上。",
                 whatsapp: "WhatsApp 聯繫", view_gallery: "查看作品集",
-                s_title_1: "專家級移動", s_title_2: "照護",
+                service_title_1: "專家級移動", service_title_2: "照護",
                 s1_h: "機油與濾芯", s1_p: "全合成機油更換與原廠級濾芯，延長引擎壽命。",
-                s2_h: "煞車系統", s2_p: "來令片、碟盤與感應器更換。包含專業安全檢查。",
+                s2_h: "煞車系統", s2_p: "來令片、碟盤與感應器更換。包含完整專業安全檢查。",
                 s3_h: "換胎服務", s3_p: "移動式換胎與胎壓校準。為加拿大嚴酷天氣做好準備。",
                 s4_h: "電腦診斷", s4_p: "先進電腦掃描，解決引擎故障燈與複雜電路問題。",
                 s5_h: "懸吊系統", s5_p: "避震器、三角架與轉向組件的維修與更換。",
-                s6_h: "安全檢查", s6_p: "全面的購前檢查 (PPI) 與全車健康檢查。",
+                s6_h: "車輛檢查", s6_p: "全面的購前檢查 (PPI) 與全車健康檢查。",
                 story_sub: "品牌精神", story_h1: "從危機走向", story_h2: "使命",
-                story_p1: "在加拿大開啟新篇章絕非易事。在不確定性的重壓下，壓力曾令人窒息。",
+                story_p1: "在加拿大開啟新篇章絕非易事。在不確定性的重壓下，曾有那麼一刻壓力令人窒息。",
                 story_quote: `"我意識到我想幫助那些正經歷與我相同困境的人。"`,
-                story_p2: "在大師級機械師指導下，Phoenix Auto.852 誕生了。",
-                work_h: "維修實錄", book_title_1: "預約您的", book_title_2: "服務",
-                ai_ask: "有問題<br>儘管問我", ai_assistant: "AI 助手", ai_intro: "您好！請描述您的愛車問題，我為您即時分析！",
-                ai_placeholder: "描述問題...", ai_thinking: "分析中...", ai_book: "預約專業檢查 →"
+                story_p2: "在一位無私傳授知識的大師級機械師指導下，Phoenix Auto.852 誕生了。",
+                hk_heart: "香港心", toronto_service: "多倫多優質服務",
+                work_h_1: "維修", work_h_2: "實錄", book_title_1: "預約您的", book_title_2: "服務",
+                ai_ask: "有問題<br>儘管問我", ai_h: "AI 助手", ai_intro: "您好！我是您的 AI 機械師顧問。請描述您的愛車問題，我為您即時分析！", ai_thinking: "思考中...", ai_placeholder: "描述問題...", ai_book: "預約專業檢查 →"
             },
             fr: {
                 nav_home: "Accueil", nav_gallery: "Galerie", nav_services: "Services", nav_story: "Histoire", book_now: "Réserver",
-                hero_sub: "Service Mécanique Mobile Premium", hero_title_1: "Ravivez votre", hero_title_2: "Conduite", hero_desc: "Pas de garage? Pas de problème. Expertise concessionnaire à votre porte.",
-                whatsapp: "Contactez WhatsApp", view_gallery: "Voir la Galerie",
-                s_title_1: "Soins Mobiles", s_title_2: "Experts",
-                s1_h: "Huile & Filtres", s1_p: "Vidange d'huile synthétique et remplacement de filtre OEM.",
-                s2_h: "Freinage", s2_p: "Plaquettes, rotors et capteurs. Inspection de sécurité incluse.",
-                s3_h: "Pneus", s3_p: "Changement de pneus mobile. Prêt pour l'hiver canadien.",
-                s4_h: "Diagnostics", s4_p: "Scanner informatique pour voyants moteur et pannes électriques.",
+                hero_sub: "Service Mécanique Mobile Premium", hero_title_1: "Ravivez votre", hero_title_2: "Conduite", hero_desc: "Pas de garage? Pas de problème. Expertise concessionnaire à domicile.",
+                whatsapp: "WhatsApp", view_gallery: "Voir Galerie",
+                service_title_1: "Soins", service_title_2: "Experts",
+                s1_h: "Huile & Filtres", s1_p: "Vidange d'huile synthétique et filtre OEM.",
+                s2_h: "Freinage", s2_p: "Plaquettes, rotors et capteurs. Inspection incluse.",
+                s3_h: "Pneus", s3_p: "Changement de pneus mobile. Prêt pour l'hiver.",
+                s4_h: "Diagnostics", s4_p: "Scanner informatique avancé pour les voyants moteur.",
                 s5_h: "Suspension", s5_p: "Réparation des amortisseurs et composants de direction.",
-                s6_h: "Inspections", s6_p: "Inspections pré-achat (PPI) et bilans de santé complets.",
-                story_sub: "Notre Esprit", story_h1: "De la Crise au", story_h2: "But",
-                story_p1: "Commencer au Canada n'a pas été facile. La pression était écrasante.",
-                story_quote: `"J'ai réalisé que je voulais aider les gens qui traversent les mêmes épreuves."`,
+                s6_h: "Inspections", s6_p: "Inspections PPI et bilans de santé complets.",
+                story_sub: "Esprit", story_h1: "De la Crise au", story_h2: "But",
+                story_p1: "Commencer au Canada n'a pas été facile. La pression était immense.",
+                story_quote: `"J'ai réalisé que je voulais aider les gens."`,
                 story_p2: "Sous la direction d'un maître mécanicien, Phoenix Auto.852 est né.",
-                work_h: "Nos Travaux", book_title_1: "Réservez votre", book_title_2: "Service",
-                ai_ask: "Posez-moi<br>vos questions", ai_assistant: "Assistant IA", ai_intro: "Bonjour! Décrivez vos problèmes de voiture pour une analyse.",
-                ai_placeholder: "Décrivez les symptômes...", ai_thinking: "Réflexion...", ai_book: "Réserver une inspection →"
+                hk_heart: "Cœur de HK", toronto_service: "Qualité Toronto",
+                work_h_1: "Nos", work_h_2: "TRAVAUX", book_title_1: "Réservez", book_title_2: "Service",
+                ai_ask: "Des questions?", ai_h: "Assistant IA", ai_intro: "Bonjour! Je suis votre conseiller mécanique IA.", ai_thinking: "Réflexion...", ai_placeholder: "Symptômes...", ai_book: "Réserver →"
             }
         };
 
@@ -280,17 +315,18 @@
             { id: 1, car: "Mercedes CLA250", repair: { en: "Window Switch Replacement", zh: "車窗開關更換", fr: "Interrupteur vitre" } },
             { id: 2, car: "Porsche 911", repair: { en: "Maintenance", zh: "例行保養", fr: "Entretien" } },
             { id: 3, car: "VW Jetta", repair: { en: "Fuel Pump Replacement", zh: "燃油泵更換", fr: "Pompe à carburant" } },
-            { id: 4, car: "Toyota RAV4", repair: { en: "Rear Struts Replacement", zh: "後避震更換", fr: "Amortisseurs arrière" } },
+            { id: 4, car: "Toyota RAV4", repair: { en: "Rear Struts Replacement", zh: "後避震更換", fr: "Amortisseurs" } },
             { id: 5, car: "VW Tiguan", repair: { en: "Maintenance", zh: "例行保養", fr: "Entretien" } },
             { id: 6, car: "Lexus NX200t", repair: { en: "Water Pump Replacement", zh: "水泵更換", fr: "Pompe à eau" } },
             { id: 7, car: "Mercedes GLB250", repair: { en: "Combination Switch Replacement", zh: "組合開關更換", fr: "Commutateur" } },
             { id: 8, car: "Infiniti Q50", repair: { en: "AC Compressor Replacement", zh: "冷氣壓縮機更換", fr: "Compresseur AC" } },
             { id: 9, car: "BMW 328i XDrive", repair: { en: "Pre-Safety Inspection", zh: "安檢前檢查", fr: "Inspection" } },
-            { id: 10, car: "Hyundai Elantra", repair: { en: "Engine Diagnostic", zh: "引擎診斷", fr: "Diagnostic" } },
+            { id: 10, car: "Hyundai Elantra", repair: { en: "Engine Diagnostic", zh: "引擎診斷", fr: "Diagnostic moteur" } },
             { id: 11, car: "Hyundai Elantra", repair: { en: "Steering Coupler Replacement", zh: "轉向聯軸器更換", fr: "Direction" } },
             { id: 12, car: "Infiniti Q50", repair: { en: "Trunk Lift Strut Replacement", zh: "尾箱撐桿更換", fr: "Vérin de coffre" } }
         ];
 
+        // --- 核心功能 ---
         function changeLang(lang) {
             currentLang = lang;
             document.getElementById('current-lang-text').innerText = lang.toUpperCase();
@@ -304,21 +340,52 @@
 
         function renderGallery() {
             const grid = document.getElementById('gallery-grid');
+            if(!grid) return;
             grid.innerHTML = galleryData.map(item => `
                 <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                     <img src="p${item.id}.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
                     <img src="p${item.id}_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover" onerror="this.src='p${item.id}.jpeg'">
                     <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20">
-                        <span class="text-red-500 font-bold text-[10px] uppercase tracking-widest">${item.repair[currentLang]}</span>
-                        <h4 class="text-lg font-bold uppercase">${item.car}</h4>
+                        <span class="text-red-500 font-bold text-xs uppercase tracking-widest">${item.repair[currentLang]}</span>
+                        <h4 class="text-xl font-bold uppercase">${item.car}</h4>
                     </div>
                 </div>
             `).join('');
         }
 
-        // UI Logic
+        function jumpTo(sectionId) {
+            const g = document.getElementById('gallery-page');
+            if (g && !g.classList.contains('hidden-page')) {
+                showPage('home');
+                setTimeout(() => {
+                    const target = document.getElementById(sectionId);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else {
+                const target = document.getElementById(sectionId);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function showPage(pageId) {
+            const h = document.getElementById('home-page'), g = document.getElementById('gallery-page');
+            const navGallery = document.getElementById('nav-gallery'), mobGallery = document.getElementById('mob-gallery');
+            if (pageId === 'gallery') {
+                h.classList.add('hidden-page'); g.classList.remove('hidden-page');
+                if(navGallery) navGallery.classList.add('hidden');
+                if(mobGallery) mobGallery.classList.add('hidden');
+            } else {
+                h.classList.remove('hidden-page'); g.classList.add('hidden-page');
+                if(navGallery) navGallery.classList.remove('hidden');
+                if(mobGallery) mobGallery.classList.remove('hidden');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        // --- UI 操作 ---
         function toggleMobileMenu() { const m = document.getElementById('mobile-menu'); m.classList.toggle('open'); document.getElementById('menu-icon').className = m.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars'; }
         function handleMobileNav(id) { showPage(id); toggleMobileMenu(); }
+        function handleJumpNav(id) { toggleMobileMenu(); jumpTo(id); }
 
         const widget = document.getElementById('ai-widget-container'), bubble = document.getElementById('ai-cloud-bubble');
         let isDragging = false, startY = 0, startTop = 0, hasMoved = false;
@@ -332,39 +399,25 @@
 
         async function getAiAdvice(message) {
             try {
-                const response = await fetch('/api/diagnose', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message, lang: currentLang })
-                });
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.error || 'Server Error');
-                return data.reply;
-            } catch (err) { return translations[currentLang].ai_intro + " (Error)"; }
+                const response = await fetch('/api/diagnose', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message, lang: currentLang }) });
+                const data = await response.json(); return data.reply;
+            } catch (err) { return "Error / 錯誤"; }
         }
 
         async function diagnoseIssue() {
             const input = document.getElementById('ai-input'), chat = document.getElementById('chat-content'), loader = document.getElementById('chat-loading');
             const text = input.value.trim(); if (!text) return;
-            const uM = document.createElement('div'); uM.className="bg-black text-white p-3 rounded-2xl self-end max-w-[85%] shadow-sm"; uM.innerText=text; chat.appendChild(uM);
+            const uM = document.createElement('div'); uM.className="bg-black text-white p-3 rounded-2xl self-end max-w-[85%] shadow-sm mb-2"; uM.innerText=text; chat.appendChild(uM);
             input.value = ""; loader.classList.remove('hidden'); chat.scrollTop = chat.scrollHeight;
             const reply = await getAiAdvice(text);
             loader.classList.add('hidden');
-            const aM = document.createElement('div'); aM.className="bg-white p-3 rounded-2xl border self-start max-w-[85%] shadow-sm"; aM.innerText=reply;
-            const link = document.createElement('a'); link.href="#contact"; link.onclick=closeAiWindow; link.className="text-red-600 font-bold block mt-2 hover:underline text-[10px] uppercase"; link.innerText=translations[currentLang].ai_book;
+            const aM = document.createElement('div'); aM.className="bg-white p-3 rounded-2xl border self-start max-w-[85%] shadow-sm mb-2"; aM.innerText=reply;
+            const link = document.createElement('a'); link.href="javascript:void(0)"; link.onclick=()=> { closeAiWindow(); jumpTo('contact'); }; link.className="text-red-600 font-bold block mt-2 hover:underline text-[10px] uppercase"; link.innerText=translations[currentLang].ai_book;
             aM.appendChild(link); chat.appendChild(aM); chat.scrollTop = chat.scrollHeight;
         }
-
         document.getElementById('ai-input').addEventListener('keypress', (e) => { if(e.key === 'Enter') diagnoseIssue(); });
 
-        function showPage(pageId) {
-            const h = document.getElementById('home-page'), g = document.getElementById('gallery-page'), links = document.querySelectorAll('.home-only');
-            if (pageId === 'gallery') { h.classList.add('hidden-page'); g.classList.remove('hidden-page'); links.forEach(el => el.style.display = 'none'); }
-            else { h.classList.remove('hidden-page'); g.classList.add('hidden-page'); links.forEach(el => el.style.display = ''); }
-            window.scrollTo(0, 0);
-        }
-
-        window.onload = renderGallery;
+        window.onload = () => { changeLang('en'); };
     </script>
 </body>
 </html>
