@@ -114,8 +114,9 @@
         }
 
         @keyframes floating-widget {
-            0%, 100% { transform: translateY(0px); }
+            0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
 
         .ai-fab {
@@ -200,7 +201,6 @@
                 </div>
                 
                 <div class="flex items-center space-x-2 sm:space-x-6">
-                    <!-- 電腦版 -->
                     <div class="hidden lg:flex space-x-8 font-semibold uppercase text-sm tracking-widest mr-4">
                         <a href="javascript:void(0)" onclick="showPage('home')" class="hover:text-red-500 transition">Home</a>
                         <a href="javascript:void(0)" onclick="showPage('gallery')" class="hover:text-red-500 transition">Gallery</a>
@@ -208,7 +208,6 @@
                         <a href="#about" class="hover:text-red-500 transition home-only">Our Story</a>
                     </div>
 
-                    <!-- 快捷聯繫 -->
                     <div class="flex items-center space-x-2 sm:space-x-4">
                         <a href="https://www.instagram.com/phoenix.852/" target="_blank" rel="noopener" class="text-white hover:text-red-500 text-lg sm:text-2xl transition"><i class="fab fa-instagram"></i></a>
                         <a href="https://wa.me/14374496026" target="_blank" rel="noopener" class="text-green-500 hover:text-green-400 text-lg sm:text-2xl transition"><i class="fab fa-whatsapp"></i></a>
@@ -216,7 +215,6 @@
                         <a href="mailto:phoenixauto852@gmail.com" class="text-blue-400 hover:text-blue-300 text-lg sm:text-2xl transition"><i class="fas fa-envelope"></i></a>
                     </div>
 
-                    <!-- 手機選單按鈕 -->
                     <button onclick="toggleMobileMenu()" class="lg:hidden text-white text-2xl focus:outline-none ml-2">
                         <i id="menu-icon" class="fas fa-bars"></i>
                     </button>
@@ -257,42 +255,42 @@
                     <h1 class="text-4xl sm:text-6xl md:text-8xl font-black mb-6 uppercase italic leading-tight">Revive Your <span class="phoenix-accent">Drive</span></h1>
                     <p class="text-lg sm:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto font-light">No garage? No problem. We bring dealership-quality expertise to your driveway across the GTA.</p>
                     <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-                        <a href="https://wa.me/14374496026" target="_blank" rel="noopener noreferrer" class="bg-green-600 hover:bg-green-700 text-white px-12 py-4 rounded-full text-xl font-black transition-all shadow-xl">WhatsApp Us</a>
+                        <a href="https://wa.me/14374496026" target="_blank" rel="noopener noreferrer" class="bg-green-600 hover:bg-green-700 text-white px-12 py-4 rounded-full text-xl font-black transition shadow-xl">WhatsApp Us</a>
                         <a href="javascript:void(0)" onclick="showPage('gallery')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-12 py-4 rounded-full text-xl font-bold transition">View Gallery</a>
                     </div>
                 </div>
             </section>
 
             <!-- Services Section -->
-            <section id="services" class="py-24 sm:py-32 max-w-7xl mx-auto px-4">
-                <h2 class="text-4xl sm:text-5xl font-black uppercase mb-12 text-left">Expert Mobile <span class="text-red-600">Care</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left">
-                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-red-600 transition-all">
+            <section id="services" class="py-24 sm:py-32 max-w-7xl mx-auto px-4 text-left">
+                <h2 class="text-4xl sm:text-5xl font-black uppercase mb-12">Expert Mobile <span class="text-red-600">Care</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-red-600">
                         <i class="fas fa-oil-can text-3xl text-red-600 mb-6"></i>
                         <h3 class="text-2xl font-black mb-2 uppercase italic">Oil & Filters</h3>
                         <p class="text-gray-500 leading-relaxed">Full synthetic fluid exchange and OEM-grade filter replacement for engine longevity.</p>
                     </div>
-                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-orange-500 transition-all">
+                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-orange-500">
                         <i class="fas fa-compact-disc text-3xl text-orange-500 mb-6"></i>
                         <h3 class="text-2xl font-black mb-2 uppercase italic">Brake Systems</h3>
                         <p class="text-gray-500 leading-relaxed">Pads, rotors, and sensor replacements. Complete professional safety inspection included.</p>
                     </div>
-                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-red-600 transition-all">
+                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-red-600">
                         <i class="fas fa-snowflake text-3xl text-red-600 mb-6"></i>
                         <h3 class="text-2xl font-black mb-2 uppercase italic">Tire Swap</h3>
                         <p class="text-gray-500 leading-relaxed">Mobile tire swap and pressure calibration. Get ready for Canada's toughest weather.</p>
                     </div>
-                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-orange-500 transition-all">
+                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-orange-500">
                         <i class="fas fa-microchip text-3xl text-orange-500 mb-6"></i>
                         <h3 class="text-2xl font-black mb-2 uppercase italic">Diagnostics</h3>
                         <p class="text-gray-500 leading-relaxed">Advanced computer scanning for engine check lights and complex electrical faults.</p>
                     </div>
-                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-red-600 transition-all">
+                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-red-600">
                         <i class="fas fa-tools text-3xl text-red-600 mb-6"></i>
                         <h3 class="text-2xl font-black mb-2 uppercase italic">Suspension</h3>
                         <p class="text-gray-500 leading-relaxed">Repair and replacement of shocks, struts, control arms, and steering components.</p>
                     </div>
-                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-orange-500 transition-all">
+                    <div class="service-card bg-white p-10 rounded-3xl shadow-xl border-b-8 border-orange-500">
                         <i class="fas fa-search-dollar text-3xl text-orange-500 mb-6"></i>
                         <h3 class="text-2xl font-black mb-2 uppercase italic">Inspections</h3>
                         <p class="text-gray-500 leading-relaxed">Comprehensive pre-purchase inspections (PPI) and overall vehicle health checks.</p>
@@ -308,12 +306,11 @@
                             <h2 class="text-red-500 font-black mb-4 uppercase tracking-[0.3em]">Our Spirit</h2>
                             <h3 class="text-4xl sm:text-5xl md:text-7xl font-black mb-10 uppercase leading-tight italic">From Crisis to<br><span class="text-transparent bg-clip-text logo-bg">Purpose</span></h3>
                             <div class="space-y-8 text-gray-400 text-lg sm:text-xl font-light leading-relaxed">
-                                <p>Starting a new chapter in Canada was anything but easy. Between the daily grind and the weight of uncertainty, there was a moment where the pressure became overwhelming—leading to sleepless nights and a loss of direction.</p>
-                                <p>It was during a forced break from work that I asked myself: <i>"What is my purpose?"</i></p>
-                                <p class="text-white font-bold italic text-2xl sm:text-3xl border-l-8 border-red-600 pl-6 py-4 bg-white/5 rounded-r-xl">
+                                <p>Starting a new chapter in Canada was anything but easy. Between the daily grind and the weight of uncertainty, there was a moment where the pressure became overwhelming.</p>
+                                <p class="text-white font-bold italic text-2xl sm:text-3xl border-l-8 border-red-600 pl-6 py-4 bg-white/5">
                                     "I realized I wanted to help people who are facing the same struggles I once did."
                                 </p>
-                                <p>With the guidance of a master mechanic who selflessly shared his knowledge, Phoenix Auto.852 was born. We aren't just here to fix cars; we're here to save you time and provide the support you can trust on your own journey.</p>
+                                <p>With the guidance of a master mechanic who selflessly shared his knowledge, Phoenix Auto.852 was born. We aren't just here to fix cars; we're here to save you time and provide the support you can trust.</p>
                             </div>
                         </div>
                         <div class="lg:w-2/5 text-center">
@@ -336,87 +333,87 @@
                     
                     <!-- Item 1 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p1.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p1_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
+                        <img src="p1.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p1_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Window Switch Replacement</span><h4 class="text-xl font-bold uppercase">Mercedes CLA250</h4></div>
                         <div class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity z-30">RESULT</div>
                     </div>
 
                     <!-- Item 2 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p2.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p2_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
+                        <img src="p2.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p2_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Maintenance</span><h4 class="text-xl font-bold uppercase">Porsche 911</h4></div>
                     </div>
 
                     <!-- Item 3 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p3.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p3_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
+                        <img src="p3.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p3_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Fuel Pump Replacement</span><h4 class="text-xl font-bold uppercase">VW Jetta</h4></div>
                     </div>
 
                     <!-- Item 4 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p4.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p4_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">Rear Struts Replacement</span><h4 class="text-xl font-bold uppercase">Toyota RAV4</h4></div>
+                        <img src="p4.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p4_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Rear Struts Replacement</span><h4 class="text-xl font-bold uppercase">Toyota RAV4</h4></div>
                     </div>
 
                     <!-- Item 5 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p5.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p5_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
+                        <img src="p5.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p5_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Maintenance</span><h4 class="text-xl font-bold uppercase">VW Tiguan</h4></div>
                     </div>
 
                     <!-- Item 6 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p6.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p6_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">Water Pump Replacement</span><h4 class="text-xl font-bold uppercase">Lexus NX200t</h4></div>
+                        <img src="p6.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p6_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Water Pump Replacement</span><h4 class="text-xl font-bold uppercase">Lexus NX200t</h4></div>
                     </div>
 
                     <!-- Item 7 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p7.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p7_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
+                        <img src="p7.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p7_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Combination Switch Replacement</span><h4 class="text-xl font-bold uppercase">Mercedes GLB250</h4></div>
                     </div>
 
                     <!-- Item 8 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p8.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p8_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">AC Compressor Replacement</span><h4 class="text-xl font-bold uppercase">Infiniti Q50</h4></div>
+                        <img src="p8.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p8_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">AC Compressor Replacement</span><h4 class="text-xl font-bold uppercase">Infiniti Q50</h4></div>
                     </div>
 
                     <!-- Item 9 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p9.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p9_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
+                        <img src="p9.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p9_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Pre-Safety Inspection</span><h4 class="text-xl font-bold uppercase">BMW 328i XDrive</h4></div>
                     </div>
 
                     <!-- Item 10 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p10.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p10_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">Engine Diagnostic</span><h4 class="text-xl font-bold uppercase">Hyundai Elantra</h4></div>
+                        <img src="p10.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p10_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Engine Diagnostic</span><h4 class="text-xl font-bold uppercase">Hyundai Elantra</h4></div>
                     </div>
 
                     <!-- Item 11 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p11.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p11_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
+                        <img src="p11.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p11_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Steering Coupler Replacement</span><h4 class="text-xl font-bold uppercase">Hyundai Elantra</h4></div>
                     </div>
 
                     <!-- Item 12 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p12.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
-                        <img src="p12_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">Trunk Lift Strut Replacement</span><h4 class="text-xl font-bold uppercase">Infiniti Q50</h4></div>
+                        <img src="p12.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10 w-full h-full object-cover">
+                        <img src="p12_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Trunk Lift Strut Replacement</span><h4 class="text-xl font-bold uppercase">Infiniti Q50</h4></div>
                     </div>
                 </div>
             </div>
@@ -462,12 +459,12 @@
         </div>
         <div id="chat-loading" class="hidden px-6 py-2 text-red-600 text-[10px] font-black uppercase">Thinking...</div>
         <div class="p-4 bg-white border-t shrink-0 flex space-x-2">
-            <input type="text" id="ai-input" placeholder="Describe symptoms..." class="flex-1 px-4 py-3 bg-gray-100 rounded-full outline-none text-sm focus:ring-2 focus:ring-red-500/20">
+            <input type="text" id="ai-input" placeholder="Describe symptoms..." class="flex-1 px-4 py-3 bg-gray-100 rounded-full outline-none">
             <button onclick="diagnoseIssue()" class="bg-black text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-600 transition shadow-lg"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
-    <footer class="bg-gray-50 py-16 border-t text-center text-gray-400 font-bold uppercase tracking-widest text-[10px]">
+    <footer class="bg-gray-50 py-12 border-t text-center text-gray-400 font-bold uppercase tracking-widest text-[10px]">
         © 2026 Phoenix Auto.852. Professional Mobile Mechanic Serving Toronto & GTA.
     </footer>
 
@@ -498,7 +495,7 @@
         });
         function closeAiWindow() { document.getElementById('ai-window').classList.remove('active'); bubble.style.display = 'block'; }
 
-        // --- AI API (Vercel Backend Only) ---
+        // --- AI API ---
         async function getAiAdvice(message) {
             try {
                 const response = await fetch('/api/diagnose', {
@@ -525,7 +522,7 @@
             const reply = await getAiAdvice(text);
             loader.classList.add('hidden');
 
-            const aM = document.createElement('div'); aM.className="bg-white p-3 rounded-2xl border self-start max-w-[85%] shadow-sm mb-2"; aM.innerText=reply;
+            const aM = document.createElement('div'); aM.className="bg-white p-4 rounded-2xl border self-start max-w-[85%] shadow-sm mb-2"; aM.innerText=reply;
             const link = document.createElement('a'); link.href="#contact"; link.onclick=closeAiWindow; link.className="text-red-600 font-bold block mt-2 hover:underline text-[10px] uppercase tracking-wider"; link.innerText="Book Pro Inspection →";
             aM.appendChild(link); chat.appendChild(aM); chat.scrollTop = chat.scrollHeight;
         }
