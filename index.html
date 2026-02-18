@@ -98,7 +98,7 @@
             transition: opacity 0.5s ease-in-out;
         }
 
-        /* --- Floating AI Widget --- */
+        /* AI Widget Styles */
         #ai-widget-container {
             position: fixed;
             top: 40%;
@@ -170,7 +170,6 @@
         }
 
         .ai-chat-window.active { display: flex; }
-
         .chat-scroll::-webkit-scrollbar { width: 4px; }
         .chat-scroll::-webkit-scrollbar-thumb { background: #e63946; border-radius: 10px; }
 
@@ -184,6 +183,7 @@
 </head>
 <body class="bg-gray-50 text-gray-900">
 
+    <!-- 導航欄 -->
     <nav class="fixed w-full z-50 bg-black/80 text-white backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
@@ -293,17 +293,14 @@
             </section>
         </div>
 
-        <!-- Gallery -->
         <div id="gallery-page" class="hidden-page pt-32 pb-20 px-4">
             <div class="max-w-7xl mx-auto text-center">
                 <h2 class="text-5xl font-black uppercase mb-12">Our <span class="text-red-600">Work</span></h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <!-- Example Item -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p1.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10"><img src="p1_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 transition duration-700">
+                        <img src="p1.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10"><img src="p1_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 transition duration-700">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase">Window Switch</span><h4 class="text-xl font-bold uppercase">Mercedes CLA250</h4></div>
                     </div>
-                    <!-- Repeat for p2-p12 with .jpeg -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p2.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10"><img src="p2_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 transition duration-700">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase">Maintenance</span><h4 class="text-xl font-bold uppercase">Porsche 911</h4></div>
@@ -357,24 +354,21 @@
             <div class="max-w-5xl mx-auto text-center">
                 <h2 class="text-4xl md:text-5xl font-black uppercase mb-12">Book Your <span class="text-red-600">Service</span></h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <a href="https://wa.me/14374496026" target="_blank" class="p-8 bg-green-600 text-white rounded-3xl hover:bg-green-700 transition shadow-xl">
-                        <i class="fab fa-whatsapp text-5xl mb-4"></i>
-                        <p class="text-xl font-black">WhatsApp</p>
+                    <a href="https://wa.me/14374496026" target="_blank" class="p-8 bg-green-600 text-white rounded-3xl hover:bg-green-700 transition shadow-xl flex flex-col items-center">
+                        <i class="fab fa-whatsapp text-4xl mb-4"></i><span class="text-xl font-black">WhatsApp</span>
                     </a>
-                    <a href="sms:+14374496026" class="p-8 bg-red-600 text-white rounded-3xl hover:bg-red-700 transition shadow-xl">
-                        <i class="fas fa-comment-alt text-4xl mb-4"></i>
-                        <p class="text-xl font-black">Send SMS</p>
+                    <a href="sms:+14374496026" class="p-8 bg-red-600 text-white rounded-3xl hover:bg-red-700 transition shadow-xl flex flex-col items-center">
+                        <i class="fas fa-comment-alt text-4xl mb-4"></i><span class="text-xl font-black">Send SMS</span>
                     </a>
-                    <a href="mailto:phoenixauto852@gmail.com" class="p-8 bg-gray-900 text-white rounded-3xl hover:bg-black transition shadow-xl">
-                        <i class="fas fa-envelope text-4xl mb-4"></i>
-                        <p class="text-xl font-black">Email Us</p>
+                    <a href="mailto:phoenixauto852@gmail.com" class="p-8 bg-gray-900 text-white rounded-3xl hover:bg-black transition shadow-xl flex flex-col items-center">
+                        <i class="fas fa-envelope text-4xl mb-4"></i><span class="text-xl font-black">Email Us</span>
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Floating AI -->
+    <!-- Floating AI Widget -->
     <div id="ai-widget-container">
         <div id="ai-cloud-bubble" class="ai-tooltip">Ask me<br>any questions</div>
         <div class="ai-fab">
@@ -384,43 +378,38 @@
         </div>
     </div>
 
-    <!-- AI Chat -->
+    <!-- AI Chat Window -->
     <div id="ai-window" class="ai-chat-window">
         <div class="p-6 bg-black text-white flex justify-between items-center shrink-0">
             <div class="flex items-center"><i class="fas fa-magic mr-3 text-red-500"></i><span class="font-black uppercase tracking-tight text-sm">AI Assistant</span></div>
             <button onclick="closeAiWindow()" class="text-white opacity-50"><i class="fas fa-times"></i></button>
         </div>
-        <div id="chat-content" class="flex-1 p-6 overflow-y-auto bg-gray-50 chat-scroll flex flex-col space-y-4 text-left">
-            <div class="bg-white p-4 rounded-2xl border self-start max-w-[85%] text-sm">Hello! I'm your AI mechanic advisor. How can I help?</div>
+        <div id="chat-content" class="flex-1 p-6 overflow-y-auto bg-gray-50 chat-scroll flex flex-col space-y-4 text-left text-sm">
+            <div class="bg-white p-4 rounded-2xl border self-start max-w-[85%]">Hello! I'm your AI mechanic advisor. How can I help?</div>
         </div>
         <div id="chat-loading" class="hidden px-6 py-2">
-            <div class="flex items-center space-x-2 text-red-600">
-                <div class="animate-bounce h-1.5 w-1.5 bg-red-600 rounded-full"></div>
-                <div class="animate-bounce h-1.5 w-1.5 bg-red-600 rounded-full" style="animation-delay: 0.2s"></div>
-                <span class="text-[10px] font-black ml-2">Thinking...</span>
-            </div>
+            <div class="flex items-center space-x-2 text-red-600"><div class="animate-bounce h-1.5 w-1.5 bg-red-600 rounded-full"></div><div class="animate-bounce h-1.5 w-1.5 bg-red-600 rounded-full" style="animation-delay: 0.2s"></div><span class="text-[10px] font-black uppercase ml-2">Thinking...</span></div>
         </div>
         <div class="p-4 bg-white border-t shrink-0">
             <div class="flex space-x-2">
-                <input type="text" id="ai-input" placeholder="Symptoms..." class="flex-1 px-4 py-3 bg-gray-100 rounded-full outline-none text-sm">
-                <button onclick="diagnoseIssue()" class="bg-black text-white w-12 h-12 rounded-full flex items-center justify-center"><i class="fas fa-paper-plane"></i></button>
+                <input type="text" id="ai-input" placeholder="Symptoms..." class="flex-1 px-4 py-3 bg-gray-100 rounded-full outline-none text-sm font-medium">
+                <button onclick="diagnoseIssue()" class="bg-black text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-red-600 transition"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
 
-    <footer class="bg-gray-50 py-16 border-t text-center">
-        <p class="text-gray-400 font-medium">© 2026 Phoenix Auto.852. Professional Mobile Mechanic Toronto.</p>
+    <footer class="bg-gray-50 py-16 border-t text-center text-gray-400 font-medium">
+        © 2026 Phoenix Auto.852. Professional Mobile Mechanic Toronto.
     </footer>
 
     <script>
-        // --- UI Logic ---
+        // --- UI & Navigation Logic ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
             menu.classList.toggle('open');
             icon.className = menu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
         }
-
         function handleMobileNav(id) { showPage(id); toggleMobileMenu(); }
 
         const widget = document.getElementById('ai-widget-container'), bubble = document.getElementById('ai-cloud-bubble');
@@ -434,13 +423,7 @@
         window.addEventListener('touchend', () => dragEnd());
 
         function dragStart(e) { isDragging = true; startY = e.clientY; startTop = widget.offsetTop; hasMoved = false; widget.style.animationPlayState = 'paused'; }
-        function dragMove(e) { 
-            if (!isDragging) return; 
-            const dY = e.clientY - startY; 
-            if (Math.abs(dY) > 5) hasMoved = true; 
-            widget.style.top = Math.max(80, Math.min(startTop + dY, window.innerHeight - 100)) + 'px'; 
-            widget.style.bottom = 'auto'; 
-        }
+        function dragMove(e) { if (!isDragging) return; const dY = e.clientY - startY; if (Math.abs(dY) > 5) hasMoved = true; widget.style.top = Math.max(80, Math.min(startTop + dY, window.innerHeight - 100)) + 'px'; widget.style.bottom = 'auto'; }
         function dragEnd() { isDragging = false; widget.style.animationPlayState = 'running'; }
 
         document.getElementById('ai-btn').addEventListener('click', () => {
@@ -450,13 +433,12 @@
                 bubble.style.display = win.classList.contains('active') ? 'none' : 'block';
             }
         });
-
         function closeAiWindow() { document.getElementById('ai-window').classList.remove('active'); bubble.style.display = 'block'; }
 
-        // --- API Logic (Vercel Proxy) ---
+        // --- Gemini API Proxy (Vercel Version) ---
         async function getAiAdvice(message) {
             try {
-                // 向 Vercel 後端發送請求，不直接暴露 API KEY
+                // 這裡改為向 Vercel 的後端 API 發送請求
                 const response = await fetch('/api/diagnose', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -466,6 +448,7 @@
                 if (!response.ok) throw new Error(data.error || 'Server Error');
                 return data.reply;
             } catch (err) {
+                console.error("AI Error:", err);
                 return "Connection error. Please contact us via WhatsApp for a direct consultation!";
             }
         }
@@ -475,13 +458,13 @@
             const text = input.value.trim();
             if (!text) return;
 
-            const uM = document.createElement('div'); uM.className="bg-black text-white p-4 rounded-2xl self-end max-w-[85%] text-sm"; uM.innerText=text; chat.appendChild(uM);
+            const uM = document.createElement('div'); uM.className="bg-black text-white p-4 rounded-2xl self-end max-w-[85%] mb-2"; uM.innerText=text; chat.appendChild(uM);
             input.value = ""; loader.classList.remove('hidden'); chat.scrollTop = chat.scrollHeight;
 
             const reply = await getAiAdvice(text);
             loader.classList.add('hidden');
 
-            const aM = document.createElement('div'); aM.className="bg-white p-4 rounded-2xl self-start max-w-[85%] text-sm border"; aM.innerText=reply;
+            const aM = document.createElement('div'); aM.className="bg-white p-4 rounded-2xl self-start max-w-[85%] border mb-2"; aM.innerText=reply;
             const link = document.createElement('a'); link.href="#contact"; link.onclick=closeAiWindow; link.className="text-red-600 font-bold block mt-2 hover:underline text-[10px] uppercase"; link.innerText="Book Inspection →";
             aM.appendChild(link); chat.appendChild(aM); chat.scrollTop = chat.scrollHeight;
         }
