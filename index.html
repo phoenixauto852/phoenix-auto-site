@@ -97,25 +97,26 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: all 0.7s ease-in-out;
+            transition: all 0.6s ease-in-out;
         }
 
         /* --- 懸浮 AI 助手樣式 --- */
         #ai-widget-container {
             position: fixed;
-            top: 40%;
+            top: 35%;
             right: 1rem;
             z-index: 99;
             display: flex;
             flex-direction: column;
             align-items: center;
             touch-action: none;
-            animation: floating-widget 3s ease-in-out infinite;
+            animation: floating-widget 3.5s ease-in-out infinite;
         }
 
         @keyframes floating-widget {
-            0%, 100% { transform: translateY(0px); }
+            0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
 
         .ai-fab {
@@ -124,6 +125,7 @@
         }
         .ai-fab:active { cursor: grabbing; }
 
+        /* 雲朵提示框 */
         .ai-tooltip {
             background: white;
             color: #1a1a1a;
@@ -327,56 +329,56 @@
                         <img src="p1.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p1_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
                         <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Window Switch Replacement</span><h4 class="text-xl font-bold uppercase">Mercedes CLA250</h4></div>
-                        <div class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity z-30">RESULT</div>
+                        <div class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 z-30">RESULT</div>
                     </div>
 
                     <!-- Item 2 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p2.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p2_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">Maintenance</span><h4 class="text-xl font-bold uppercase">Porsche 911</h4></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Maintenance</span><h4 class="text-xl font-bold uppercase">Porsche 911</h4></div>
                     </div>
 
                     <!-- Item 3 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p3.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p3_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs tracking-widest">Fuel Pump Replacement</span><h4 class="text-xl font-bold uppercase">VW Jetta</h4></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Fuel Pump Replacement</span><h4 class="text-xl font-bold uppercase">VW Jetta</h4></div>
                     </div>
 
                     <!-- Item 4 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p4.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p4_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">Rear Struts Replacement</span><h4 class="text-xl font-bold uppercase">Toyota RAV4</h4></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Rear Struts Replacement</span><h4 class="text-xl font-bold uppercase">Toyota RAV4</h4></div>
                     </div>
 
                     <!-- Item 5 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p5.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p5_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs tracking-widest">Maintenance</span><h4 class="text-xl font-bold uppercase">VW Tiguan</h4></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Maintenance</span><h4 class="text-xl font-bold uppercase">VW Tiguan</h4></div>
                     </div>
 
                     <!-- Item 6 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p6.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p6_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">Water Pump Replacement</span><h4 class="text-xl font-bold uppercase">Lexus NX200t</h4></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Water Pump Replacement</span><h4 class="text-xl font-bold uppercase">Lexus NX200t</h4></div>
                     </div>
 
                     <!-- Item 7 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p7.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p7_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs tracking-widest">Combination Switch Replacement</span><h4 class="text-xl font-bold uppercase">Mercedes GLB250</h4></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-red-500 font-bold text-xs uppercase tracking-widest">Combination Switch Replacement</span><h4 class="text-xl font-bold uppercase">Mercedes GLB250</h4></div>
                     </div>
 
                     <!-- Item 8 -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p8.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p8_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">AC Compressor Replacement</span><h4 class="text-xl font-bold uppercase">Infiniti Q50</h4></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">AC Compressor Replacement</span><h4 class="text-xl font-bold uppercase">Infiniti Q50</h4></div>
                     </div>
 
                     <!-- Item 9 -->
@@ -390,7 +392,7 @@
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p10.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p10_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">Engine Diagnostic</span><h4 class="text-xl font-bold uppercase">Hyundai Elantra</h4></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Engine Diagnostic</span><h4 class="text-xl font-bold uppercase">Hyundai Elantra</h4></div>
                     </div>
 
                     <!-- Item 11 -->
@@ -404,7 +406,7 @@
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p12.jpeg" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10">
                         <img src="p12_hover.jpeg" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100">
-                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs tracking-widest">Trunk Lift Strut Replacement</span><h4 class="text-xl font-bold uppercase">Infiniti Q50</h4></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full text-left text-white z-20"><span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Trunk Lift Strut Replacement</span><h4 class="text-xl font-bold uppercase">Infiniti Q50</h4></div>
                     </div>
                 </div>
             </div>
@@ -413,7 +415,7 @@
         <!-- Contact Section -->
         <section id="contact" class="py-24 bg-white px-4 border-t">
             <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-black uppercase mb-12">Book Your <span class="text-red-600">Service</span></h2>
+                <h2 class="text-4xl md:text-5xl font-black uppercase mb-12 italic">Book Your <span class="text-red-600">Service</span></h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-black uppercase tracking-tight">
                     <a href="https://wa.me/14374496026" target="_blank" class="p-8 bg-green-600 text-white rounded-3xl hover:bg-green-700 transition shadow-xl flex flex-col items-center">
                         <i class="fab fa-whatsapp text-4xl mb-4"></i>WhatsApp
@@ -445,7 +447,7 @@
             <div class="flex items-center"><i class="fas fa-magic mr-3 text-red-500"></i><span class="font-black uppercase text-sm">AI Assistant</span></div>
             <button onclick="closeAiWindow()" class="text-white opacity-50 hover:opacity-100"><i class="fas fa-times"></i></button>
         </div>
-        <div id="chat-content" class="flex-1 p-6 overflow-y-auto bg-gray-50 chat-scroll flex flex-col space-y-4 text-left text-sm font-medium">
+        <div id="chat-content" class="flex-1 p-6 overflow-y-auto bg-gray-50 flex flex-col space-y-4 text-left text-sm font-medium">
             <div class="bg-white p-4 rounded-2xl border self-start max-w-[85%]">Hello! How can I help with your car today?</div>
         </div>
         <div id="chat-loading" class="hidden px-6 py-2 text-red-600 text-[10px] font-black uppercase">Thinking...</div>
@@ -460,7 +462,7 @@
     </footer>
 
     <script>
-        // --- UI & Navigation Logic ---
+        // --- 核心導航邏輯 ---
         function toggleMobileMenu() {
             const m = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
