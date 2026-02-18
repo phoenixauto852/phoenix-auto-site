@@ -14,7 +14,7 @@
             scroll-behavior: smooth;
         }
 
-        /* 影片背景容器 */
+        /* Video background */
         .video-docker {
             position: absolute;
             top: 0;
@@ -91,6 +91,7 @@
             display: none;
         }
 
+        /* Gallery Hover Effects */
         .gallery-image-hover {
             position: absolute;
             top: 0;
@@ -101,12 +102,12 @@
             transition: opacity 0.5s ease-in-out;
         }
 
-        /* --- 懸浮 AI 助手樣式 --- */
+        /* --- Floating AI Widget Styles --- */
         #ai-widget-container {
             position: fixed;
             top: 40%;
             right: 1rem;
-            z-index: 99; /* 低於導航欄但高於內容 */
+            z-index: 99;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -128,7 +129,7 @@
             cursor: grabbing;
         }
 
-        /* 雲朵提示框 - 兩行顯示 */
+        /* Cloud Tooltip Bubble */
         .ai-tooltip {
             background: white;
             color: #1a1a1a;
@@ -143,7 +144,6 @@
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 0.02em;
-            animation: fadeInCloud 0.8s ease-out;
             pointer-events: none;
             border: 1px solid rgba(0,0,0,0.05);
             width: 90px; 
@@ -158,11 +158,6 @@
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
             border-top: 10px solid white;
-        }
-
-        @keyframes fadeInCloud {
-            from { opacity: 0; transform: scale(0.8) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .ai-chat-window {
@@ -194,7 +189,6 @@
             border-radius: 10px;
         }
 
-        /* 手機選單 */
         #mobile-menu {
             transition: all 0.3s ease-in-out;
             max-height: 0;
@@ -207,11 +201,10 @@
 </head>
 <body class="bg-gray-50 text-gray-900">
 
-    <!-- 導航欄 -->
+    <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-black/80 text-white backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <!-- Logo 區 -->
                 <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
                     <div class="logo-container logo-bg shadow-lg cursor-pointer scale-75 sm:scale-100" onclick="showPage('home')">
                         <img src="2.png" alt="Phoenix Auto Logo" class="logo-img">
@@ -224,7 +217,6 @@
                 </div>
                 
                 <div class="flex items-center space-x-2 sm:space-x-6">
-                    <!-- 電腦版連結 -->
                     <div class="hidden lg:flex space-x-8 font-semibold uppercase text-sm tracking-widest mr-4">
                         <a href="javascript:void(0)" onclick="showPage('home')" class="hover:text-red-500 transition">Home</a>
                         <a href="javascript:void(0)" onclick="showPage('gallery')" class="hover:text-red-500 transition">Gallery</a>
@@ -232,7 +224,6 @@
                         <a href="#about" class="hover:text-red-500 transition home-only">Our Story</a>
                     </div>
 
-                    <!-- 快捷聯繫 -->
                     <div class="flex items-center space-x-2 sm:space-x-4">
                         <a href="https://www.instagram.com/phoenix.852/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-red-500 text-lg sm:text-2xl transition"><i class="fab fa-instagram"></i></a>
                         <a href="https://wa.me/14374496026" target="_blank" rel="noopener noreferrer" class="text-green-500 hover:text-green-400 text-lg sm:text-2xl transition"><i class="fab fa-whatsapp"></i></a>
@@ -351,34 +342,6 @@
                     </div>
                 </div>
             </section>
-
-            <section id="about" class="py-24 sm:py-32 bg-black text-white relative overflow-hidden">
-                <div class="max-w-7xl mx-auto px-4 relative z-10">
-                    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                        <div class="lg:w-3/5 text-left">
-                            <h2 class="text-red-500 font-black mb-4 uppercase tracking-[0.3em]">Our Spirit</h2>
-                            <h3 class="text-4xl sm:text-5xl md:text-7xl font-black mb-10 uppercase leading-tight italic">From Crisis to<br><span class="text-transparent bg-clip-text logo-bg">Purpose</span></h3>
-                            <div class="space-y-8 text-gray-400 text-lg sm:text-xl font-light leading-relaxed">
-                                <p>Starting a new chapter in Canada was anything but easy. Between the daily grind and the weight of uncertainty, there was a moment where the pressure became overwhelming—leading to sleepless nights and a loss of direction.</p>
-                                <p>It was during a forced break from work that I asked myself: <i>"What is my purpose?"</i></p>
-                                <p class="text-white font-bold italic text-2xl sm:text-3xl border-l-8 border-red-600 pl-6 sm:pl-8 py-4 bg-white/5 rounded-r-xl">
-                                    "I realized I wanted to help people who are facing the same struggles I once did."
-                                </p>
-                                <p>With the guidance of a master mechanic who selflessly shared his knowledge, Phoenix Auto.852 was born. We aren't just here to fix cars; we're here to save you time and provide the support you can trust on your own journey.</p>
-                            </div>
-                        </div>
-                        <div class="lg:w-2/5 text-center">
-                            <div class="inline-block p-6 sm:p-8 bg-white/5 backdrop-blur-3xl rounded-[3rem] sm:rounded-[4rem] border border-white/10 shadow-inner">
-                                <div class="w-48 h-48 sm:w-64 sm:h-64 logo-bg rounded-full flex items-center justify-center border-8 border-white shadow-2xl mx-auto mb-8 overflow-hidden">
-                                    <img src="2.png" alt="Phoenix Auto Spirit" class="logo-img">
-                                </div>
-                                <p class="text-red-500 font-black tracking-widest text-lg sm:text-xl uppercase">Hong Kong Heart</p>
-                                <p class="text-gray-500 mt-2 font-bold uppercase tracking-widest text-xs sm:text-sm">Toronto Quality Service</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
 
         <!-- GALLERY PAGE -->
@@ -391,14 +354,13 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <!-- 項目 1-12 (確保圖片格式為 .jpeg) -->
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p1.jpeg" alt="CLA250" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10"><img src="p1_hover.jpeg" alt="After" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 transition duration-700">
                         <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent text-white z-20 pointer-events-none"><span class="text-red-500 font-bold text-xs tracking-widest uppercase">Window Switch</span><h4 class="text-xl font-bold uppercase">Mercedes CLA250</h4></div>
                         <div class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity z-30">RESULT</div>
                     </div>
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
-                        <img src="p2.jpeg" alt="911" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10"><img src="p2_hover.jpeg" alt="After" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 transition duration-700"><div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent text-white z-20 pointer-events-none"><span class="text-orange-500 font-bold text-xs tracking-widest uppercase">Maintenance</span><h4 class="text-xl font-bold uppercase">Porsche 911</h4></div>
+                        <img src="p2.jpeg" alt="Porsche" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10"><img src="p2_hover.jpeg" alt="After" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 transition duration-700"><div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent text-white z-20 pointer-events-none"><span class="text-orange-500 font-bold text-xs tracking-widest uppercase">Maintenance</span><h4 class="text-xl font-bold uppercase">Porsche 911</h4></div>
                     </div>
                     <div class="gallery-card group relative overflow-hidden rounded-3xl bg-black aspect-square">
                         <img src="p3.jpeg" alt="VW" class="gallery-image-hover opacity-80 group-hover:opacity-0 z-10"><img src="p3_hover.jpeg" alt="After" class="gallery-image-hover opacity-0 group-hover:opacity-100 z-0 scale-110 group-hover:scale-100 transition duration-700"><div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent text-white z-20 pointer-events-none"><span class="text-red-500 font-bold text-xs tracking-widest uppercase">Fuel Pump</span><h4 class="text-xl font-bold uppercase">VW Jetta</h4></div>
@@ -463,7 +425,6 @@
                         <p class="text-xs uppercase font-bold opacity-80 mb-1">Text Us Directly</p>
                         <p class="text-xl font-black text-center">Send SMS</p>
                     </a>
-                    <!-- 修復電郵按鈕 -->
                     <a href="mailto:phoenixauto852@gmail.com" class="flex flex-col items-center justify-center p-8 bg-gray-900 text-white rounded-3xl hover:bg-black transition-all shadow-xl shadow-black/10 group">
                         <i class="fas fa-envelope text-4xl mb-4 group-hover:scale-110 transition"></i>
                         <p class="text-xs uppercase font-bold opacity-80 mb-1">Send Details</p>
@@ -493,7 +454,7 @@
             </div>
             <button onclick="closeAiWindow()" class="text-white opacity-50 hover:opacity-100 transition"><i class="fas fa-times"></i></button>
         </div>
-        <div id="chat-content" class="flex-1 p-6 overflow-y-auto bg-gray-50 chat-scroll flex flex-col space-y-4">
+        <div id="chat-content" class="flex-1 p-6 overflow-y-auto bg-gray-50 chat-scroll flex flex-col space-y-4 text-left">
             <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm text-sm border border-gray-100 self-start max-w-[85%]">
                 Hello! I'm your AI mechanic advisor. Describe any issues your car is having and I'll analyze it for you!
             </div>
@@ -538,18 +499,15 @@
     </footer>
 
     <script>
+        // --- API KEY CONFIG ---
         const apiKey = ""; 
 
-        // 手機選單
+        // --- UI FUNCTIONS ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
             menu.classList.toggle('open');
-            if (menu.classList.contains('open')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
+            icon.className = menu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
         }
 
         function handleMobileNav(pageId) {
@@ -557,7 +515,7 @@
             toggleMobileMenu();
         }
 
-        // AI 拖拽邏輯
+        // --- DRAGGABLE AI Logic ---
         const widget = document.getElementById('ai-widget-container');
         const bubble = document.getElementById('ai-cloud-bubble');
         let isDragging = false, startY = 0, startTop = 0, hasMoved = false;
@@ -583,7 +541,6 @@
         }
         function dragEnd() { isDragging = false; widget.style.animationPlayState = 'running'; }
 
-        // AI 聊天
         document.getElementById('ai-btn').addEventListener('click', () => {
             if (!hasMoved) {
                 const win = document.getElementById('ai-window');
@@ -596,12 +553,14 @@
             bubble.style.display = 'block';
         }
 
+        // --- GEMINI API Logic ---
         async function getAiAdvice(userInput) {
-            const systemPrompt = "You are a professional mobile mechanic for Phoenix Auto.852. Analyze car problems, explain 2-3 causes, and advise a professional inspection. Max 100 words.";
+            const systemPrompt = "You are a professional mobile mechanic for Phoenix Auto.852. Analyze car problems, explain 2-3 likely causes, and advise a professional inspection. Keep it helpful and concise. Max 100 words.";
             const payload = {
                 contents: [{ parts: [{ text: userInput }] }],
                 systemInstruction: { parts: [{ text: systemPrompt }] }
             };
+
             let delay = 1000;
             for (let i = 0; i < 5; i++) {
                 try {
@@ -610,10 +569,17 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
+                    
                     const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "I couldn't analyze that. Please WhatsApp us!";
+                    
+                    if (data.error) throw new Error(data.error.message);
+                    
+                    const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (!aiText) throw new Error("Empty response");
+                    
+                    return aiText;
                 } catch (err) {
-                    if (i === 4) return "Failed. Please contact us via WhatsApp!";
+                    if (i === 4) return "Connection error. Please contact us via WhatsApp for a direct consultation!";
                     await new Promise(r => setTimeout(r, delay));
                     delay *= 2;
                 }
